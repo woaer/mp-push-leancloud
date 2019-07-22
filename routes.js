@@ -42,9 +42,9 @@ router.use('/wx', wxMiddlewareBuilder(async (message, req, res, next) => {
 )
 
 router.use('/push', async function (req, res) {
-  const { channelName, text } = req.body
+  const { channelName, data } = req.body
   console.log(req.body)
-  if (!channelName || !text) {
+  if (!channelName || !data) {
     return res.json({
       error: 1,
       message: 'Bad params!'
@@ -59,7 +59,7 @@ router.use('/push', async function (req, res) {
       message: 'Channel not exist!'
     })
   }
-  await channel.push(text)
+  await channel.push(data)
   res.json({
     error: 0,
     message: 'Done!'
