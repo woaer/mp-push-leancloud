@@ -17,14 +17,14 @@ const wxMiddlewareBuilder = function (fn) {
   return wechat({ token, appid, checkSignature }).text(fn).middlewarify()
 }
 
-const push = async function (openId, data) {
+const push = async function (openId, data, url) {
   // let data = {
   //   text: {
   //     value: text,
   //     color: '#173177'
   //   }
   // }
-  return sendTemplate(openId, templateId, dest, data)
+  return sendTemplate(openId, templateId, url || dest, data)
 }
 module.exports = {
   wxMiddlewareBuilder,

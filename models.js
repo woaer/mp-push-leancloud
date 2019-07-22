@@ -75,12 +75,12 @@ class Channel {
     this.exist = true
   }
 
-  async push (text) {
+  async push (data, url) {
     let userToChannelQuery = new AV.Query('UserToChannel')
     let results = await userToChannelQuery.equalTo('channel', this.Object).find()
     return Promise.all(results.map(userToChannel => {
       let openId = userToChannel.get('openId')
-      return push(openId, text)
+      return push(openId, data, url)
     }))
   }
 }
