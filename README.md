@@ -60,12 +60,35 @@ Token 需和 `WX_TOKEN` 一致
 
 ## 测试接口
 
-关注测试号，发送 `link 频道名称` 绑定频道。
+1、关注测试号，发送 `link 频道名称` 绑定频道。
 
-发送 POST 请求触发推送
+2、发送 POST 请求触发推送
 
+3、推送地址 `https://二级域名.leanapp.cn/push`
+
+|     参数    |    值    |   说明        |
+|:-----------:|:-------:|:--------------|
+| channelName | 频道名称 | 绑定的频道名称 |
+| data | 模板参数 | 参照[微信文档](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1433751277) |
+| url | 查看详情链接 | 查看详情链接 |
+
+示例
 ```
-curl -X POST 'https://二级域名.leanapp.cn/push' \
--H 'content-type: application/json' \
--d '{ "channelName": "频道名称", "text": "OK" }'
+curl -X POST \
+  https://二级域名.leanapp.cn/push \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "channelName": "频道名称",
+    "data": {
+        "from": {
+            "value": "杨国福麻辣烫",
+            "color": "#ff0000"
+        },
+        "no": {
+            "value": "BS201812290024",
+            "color": "#ff0000"
+        }
+    },
+    "url": "http://t.cn/AilQDYGX"
+}'
 ```
